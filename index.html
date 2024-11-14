@@ -1,97 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>STOP - WATCH</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-        h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin: 5px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #007bff;
-            color: white;
-            transition: background-color 0.3s;
-        }
-        button:hover {
-            background-color: #0056b3;
-        }
-    </style>
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="icon"
+      href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQF38RhYllJKAkAmZ-PMxm_xkSZ1QIDWL7IQ&s"
+    />
+  </head>
+  <body>
     <h1>00:00:00</h1>
     <div class="btns">
-
-        <button id="startBtn">Start</button>
-        <button id="resetBtn">Reset</button>
-        <button id="stopBtn">Stop</button>
-
+      <button id="startBtn">Start</button>
+      <button id="stopBtn">Stop</button>
+      <button id="resetBtn">Reset</button>
     </div>
 
-    <script>
-        const h1 = document.querySelector("h1");
-        const startBtn = document.getElementById("startBtn");
-        const stopBtn = document.getElementById("stopBtn");
-        const resetBtn = document.getElementById("resetBtn");
-
-        let minutes = 0;
-        let hours = 0;
-        let seconds = 0;
-        let intervalId = null;
-
-        function updateWatch() {
-            let watch = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-            h1.innerText = watch;
-        }
-
-        startBtn.addEventListener("click", () => {
-            if (!intervalId) {
-                intervalId = setInterval(() => {
-                    seconds++;
-                    if (seconds >= 60) {
-                        seconds = 0;
-                        minutes++;
-                    }
-                    if (minutes >= 60) {
-                        minutes = 0;
-                        hours++;
-                    }
-                    updateWatch();
-                }, 1000);
-            }
-        });
-
-        stopBtn.addEventListener("click", () => {
-            clearInterval(intervalId);
-            intervalId = null;
-        });
-
-        resetBtn.addEventListener("click", () => {
-            clearInterval(intervalId);
-            intervalId = null;
-            seconds = 0;
-            minutes = 0;
-            hours = 0;
-            updateWatch();
-        });
-
-        updateWatch(); // Initialize display
-    </script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
